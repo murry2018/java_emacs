@@ -89,10 +89,14 @@ Here, I add some basic emacs setup like loading the language, disabling the tool
   (when (version<= "9.2" (org-version))
     (require 'org-tempo))
 
+  ;; Stop indenting when expanding <s TAB
+  (setq org-adapt-indentation nil)
+
   ;; Coding specific setting
 
   ;; Automatically add ending brackets and braces
-  (electric-pair-mode 1)
+  ;; EDIT: I don't want it
+  ;; (electric-pair-mode 1)
 
   ;; Make sure tab-width is 4 and not 8
   (setq-default tab-width 4)
