@@ -283,6 +283,15 @@ We can use quickrun package to execute code (if it has main). E.g. If you have a
     :bind ("C-c r" . quickrun))
 #+END_SRC
 
+** Magit
+Git integration for emacs. In magit mode buffer(enter with =C-c m=), pressing =?= shows avaialable magit commands.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind ("C-c m" . 'magit-status))
+#+END_SRC
+
 * Language Server Protocol (LSP)
 With above setup done, below we will setup several packages closely related to LSP.
 
