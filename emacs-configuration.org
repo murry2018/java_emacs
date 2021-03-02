@@ -56,8 +56,9 @@ Here, I add some basic emacs setup like loading the language, disabling the tool
 (setq ring-bell-function 'ignore)
 
 ;; Disable scrollbar and toolbar
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;; Set language environment to UTF-8
 (set-language-environment "UTF-8")
