@@ -1,2 +1,21 @@
-# java_emacs
+* emacs configuration
+I found the original repository from [[https://xpressrazor.wordpress.com/2020/11/04/java-programming-in-emacs][xpressrazor's article]]. This article gives you a nice tutorial for programming java in emacs. If you're interested in both java and emacs, I recommend you to read it.
+
+** Original README by [[https://github.com/neppramod/java_emacs][neppramod]]
 Tutorial and Configuration to setup java development for emacs. Read [[emacs-configuration.org]] for most of the setup. File [[init.el]] loads [[emacs-configuration.org]]
+
+** Quickstart
+
+#+begin_src sh
+  git clone https://github.com/murry2018/java_emacs.git ~/.emacs.d
+#+end_src
+
+** Trouble Shooting
+*** Failed to download 'gnu' archive
+If your system doesn't have gnutls library, install it first. In my case on ubuntu 20.04:
+
+#+begin_src sh
+  sudo apt install gnutls-bin libgnutls28-dev
+#+end_src
+
+On emacs 26.x there is a TLS bug. If you are using these version it'd be better using more recent version, such as 27.x.
