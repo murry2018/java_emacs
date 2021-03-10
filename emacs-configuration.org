@@ -421,14 +421,26 @@ This is the package that handles server installation and session management.
 #+END_SRC
 
 ** LSP C/C++ Support
-LSP supports C/C++ too. Here I will use [[https://clangd.llvm.org/][clangd]]. Because LSP for c/c++ doesn't provide automatic language server installation, you should manually install them. To install a language server, follow the [[https://clangd.llvm.org/installation.html][Getting Started Guide]].
+LSP supports C/C++ too. Here I will use [[https://github.com/MaskRay/emacs-ccls][emacs-ccls]]. Because LSP for c/c++ doesn't provide automatic language server installation, you should manually install them. To install a language server, follow the [[https://github.com/MaskRay/ccls/wiki/Build][getting started guide]].
+
 
 #+begin_src emacs-lisp
   (add-hook 'c-mode-hook 'lsp)
   (add-hook 'c++-mode-hook 'lsp)
+
+  (defun my/ccls-config ()
+    (lsp)
+    (setq lsp-prefer-flymake nil)
+    (setq-default flycheck-disabled-checkers
+                  '(c/c++-cppcheck c/c++-gcc)))
+
+  (use-package ccls
+    :after (lsp flycheck)
+    :hook ((c-mode c++-mode objc-mode cuda-mode) .
+           my/ccls-config))
 #+end_src
 
-'Project Setup' section in [[https://clangd.llvm.org/installation.html][Getting started guide]] must be helpful.
+[[https://github.com/MaskRay/ccls/wiki/Project-Setup][Project Setup]] article must be helpful.
 
 * Conclusion
 Go through [[https://github.com/emacs-lsp/lsp-java#supported-commands][Supported commands]] section of lsp-java github page to see commands provided in lsp-mode. Most of these commands are available under lsp's ~C-c l~ option. I hope this configuration file was useful.
