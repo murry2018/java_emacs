@@ -415,10 +415,28 @@ You can start LSP server in a java project by using ~C-c l s s~. Once you type ~
 ** LSP Java
 This is the package that handles server installation and session management.
 #+BEGIN_SRC  emacs-lisp
-  (use-package lsp-java 
-    :ensure t
-    :config (add-hook 'java-mode-hook 'lsp))
+    (use-package lsp-java 
+      :ensure t
+      :config
+      (add-hook 'java-mode-hook 'lsp)
+      ;; For per-system setting.
+      (let ((java-config (concat EMACS_DIR "java.el")))
+        (when (file-exists-p java-config)
+          (load java-config)
+          (when (and (boundp 'my/java-vmargs) 
+                     (listp my/java-vmargs))
+            (setq lsp-java-vmargs my/java-vmargs)))))
 #+END_SRC
+
+*** Customize Java Indenting
+I don't want to "indent after paren"([[https://stackoverflow.com/q/6952369][ref]]).
+
+#+begin_src emacs-lisp
+  (defun my/java-indent ()
+    (c-set-offset 'arglist-intro '+))
+  (add-hook 'java-mode-hook 'my/java-indent)
+#+end_src
+
 
 ** LSP C/C++ Support
 LSP supports C/C++ too. Here I will use [[https://github.com/MaskRay/emacs-ccls][emacs-ccls]]. Because LSP for c/c++ doesn't provide automatic language server installation, you should manually install them. To install a language server, follow the [[https://github.com/MaskRay/ccls/wiki/Build][getting started guide]].
