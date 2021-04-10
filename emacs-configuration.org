@@ -437,7 +437,6 @@ I don't want to "indent after paren"([[https://stackoverflow.com/q/6952369][ref]
   (add-hook 'java-mode-hook 'my/java-indent)
 #+end_src
 
-
 ** LSP C/C++ Support
 LSP supports C/C++ too. Here I will use [[https://github.com/MaskRay/emacs-ccls][emacs-ccls]]. Because LSP for c/c++ doesn't provide automatic language server installation, you should manually install them. To install a language server, follow the [[https://github.com/MaskRay/ccls/wiki/Build][getting started guide]].
 
@@ -459,6 +458,19 @@ LSP supports C/C++ too. Here I will use [[https://github.com/MaskRay/emacs-ccls]
 #+end_src
 
 [[https://github.com/MaskRay/ccls/wiki/Project-Setup][Project Setup]] article must be helpful.
+
+** LSP Haskell
+[[https://github.com/emacs-lsp/lsp-haskell][lsp-haskell]] package supports haskell with lsp-mode. Before we start, We should install [[https://github.com/haskell/haskell-language-server][haskell language server]] manually. I've build it via stack. lsp-haskell will find haskell language server in =$PATH=.
+
+#+begin_src emacs-lisp
+  (use-package lsp-haskell
+    :hook ((haskell-mode . lsp)
+           (haskell-literate-mode . lsp)))
+#+end_src
+
+Before just we start coding, we should configure our project([[https://github.com/haskell/haskell-language-server#configuring-your-project-build][why&how?]]). Don't worry about overwhelming cradle settings. [[https://hackage.haskell.org/package/implicit-hie][implicit-hie]] will help us.
+
+Just type =gen-hie > hie.yaml= in your stack or cabal project root.
 
 * Conclusion
 Go through [[https://github.com/emacs-lsp/lsp-java#supported-commands][Supported commands]] section of lsp-java github page to see commands provided in lsp-mode. Most of these commands are available under lsp's ~C-c l~ option. I hope this configuration file was useful.
