@@ -157,20 +157,6 @@ This will help eliminate weird escape sequences during compilation of projects.
 * Custom Packages
 In this section we will install some of the packages that we will use for various project and file management.
 
-** Key-Chord
-Key-Chord allows us to bind regular keyboard keys for various commands without having to use prefix keys such as Ctrl, Alt or Super etc.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package use-package-chords
-    :ensure t
-    :init 
-    :config (key-chord-mode 1)
-    (setq key-chord-two-keys-delay 0.4)
-    (setq key-chord-one-key-delay 0.5)) ; default 0.2
-#+END_SRC
-
-Here, we changed the delay for the consecutive key to be little higher than default. Adjust this to what you feel comfortable.
-
 ** Projectile
 Projectile helps us with easy navigation within a project. Projectile recognizes several source control managed folders e.g *git, mercurial, maven, sbt*, and a folder with empty *.projectile* file. You can use ~C-c p~ to invoke any projectile command. This is a very useful key to remember.
 
@@ -222,14 +208,11 @@ Helm descbinds helps to easily search for keyboard shortcuts for modes that are 
 E.g. In helm-descbinds window you could type "helm" and "projectile" and see all the shortcuts assigned to various commands.
 
 ** Helm swoop
-Helm swoop allows to quickly search for text under cursor or new text within current file. I am sure you are already using ~C-s~ and ~C-r~ to search within the file. This package compliments rather than replace it. You can quickly type ~js~ to search and jump to the target line. To go back to where you started searching, use ~jp~. You can use ~M-m~ from ~C-s~ and ~C-r~ search to start using helm-swoop as described in below setting.
+Helm swoop allows to quickly search for text under cursor or new text within current file. I am sure you are already using ~C-s~ and ~C-r~ to search within the file. This package compliments rather than replace it. You can use ~M-m~ from ~C-s~ and ~C-r~ search to start using helm-swoop as described in below setting.
 
 #+BEGIN_SRC emacs-lisp
   (use-package helm-swoop 
     :ensure t
-    :chords
-    ("js" . helm-swoop)
-    ("jp" . helm-swoop-back-to-last-point)
     :init
     (bind-key "M-m" 'helm-swoop-from-isearch isearch-mode-map)
 
@@ -253,15 +236,11 @@ Helm swoop allows to quickly search for text under cursor or new text within cur
 #+END_SRC
 
 ** Avy Goto
-Avy allows you to quickly jump to certain character, word or line within the file. Use ~jc~, ~jw~ or ~jl~ to quickly jump within current file. Change it to other keys, if you feel you are using this set of keys for other purposes. 
+Avy allows you to quickly jump to certain character, word or line within the file.
 
 #+BEGIN_SRC emacs-lisp
   (use-package avy 
-    :ensure t
-    :chords
-    ("jc" . avy-goto-char)
-    ("jw" . avy-goto-word-1)
-    ("jl" . avy-goto-line))
+    :ensure t)
 #+END_SRC
 
 ** Which Key
